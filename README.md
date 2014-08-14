@@ -5,11 +5,13 @@ Description:
 ------------
 
 **Build a system that allows:**
+
 1. managing a population of sophomore students
 2. managing list of classes available for sophomore students
 3. enrolling any student in any class
 
 **Features of the system:**
+
 1. Add a student, remove a student, edit a student (you decide what demographic data you want to capture on student)
 2. Add a class, remove a class, edit a class (you decide what attributes of a class you want to capture, but it should have at least a title)
 3. Display a list of students (paginated with 20 students per page)
