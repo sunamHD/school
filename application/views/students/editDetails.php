@@ -1,21 +1,20 @@
-<h2>Create a student</h2>
+<h2>Edit student</h2>
 
 <?php echo validation_errors(); ?>
 
-<h3>Name (as per current input):<span id="nameDisp"></span></h3>
 <?php 
-    $attributes = array('id' => 'createStudentForm');
-    echo form_open('students/create', $attributes) 
+    $attributes = array('id' => 'editStudentForm');
+    echo form_open('students/editDetails', $attributes) 
 ?>
 
 	<label for="firstName">First Name</label>
-	<input type="input" name="firstName" onkeyup="updateNameDisplay()" /><br />
+	<input type="input" name="firstName" /><br />
 
 	<label for="midName">Middle Name</label>
-	<input type="input" name="midName" onkeyup="updateNameDisplay()"/><br />
+	<input type="input" name="midName"/><br />
 
 	<label for="lastName">Last Name</label>
-	<input type="input" name="lastName" onkeyup="updateNameDisplay()"/><br />
+	<input type="input" name="lastName"/><br />
 
 	<label for="year">Year (e.g. Sophomore)</label>
 	<input type="input" name="year" /><br />
@@ -26,7 +25,7 @@
 	<label for="breakdance">Is a breakdancer? (y/n)</label>
 	<input type="input" name="breakdance" /><br />
 
-	<input type="submit" name="submit" value="Create student" onclick="breakFix()" />
+	<input type="submit" name="submit" value="Edit student" onclick="breakFix()" />
 
 </form>
 <script>
