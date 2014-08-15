@@ -1,1 +1,1 @@
-<h2>Successfully created student!</h2>
+<h2>Successfully edited student!</h2>

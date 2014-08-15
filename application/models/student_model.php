@@ -8,6 +8,7 @@ class Student_model extends CI_Model {
 	}
 
     // Get news
+    /*
     public function get_students($slug = FALSE)
     {
         // If you don't provide a slug, just get all the students
@@ -21,12 +22,24 @@ class Student_model extends CI_Model {
         // If you provide a slug, get the news with that slug
 	    $query = $this->db->get_where('news', array('slug' => $slug));
 	    return $query->row_array();
+    }*/
+
+    public function student_exists($stud_id)
+    {
+        $this->db->where('stud_id',$stud_id);
+        $query = $this->db->get('students');
+        if ($query->num_rows() > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function delete_student()
     {
-        $id = $this->input->post('id');
-        $this->db->delete('students', array('id' => $id)); 
+        $stud_id = $this->input->post('stud_id');
+        $this->db->delete('students', array('stud_id' => $stud_id)); 
     }
 
     public function set_student()

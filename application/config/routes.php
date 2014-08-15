@@ -39,6 +39,7 @@
 */
 
 $route['students/create'] = 'students/create';
+$route['students/delete'] = 'students/delete';
 $route['students/(:any)'] = 'students/view/$1';
 $route['students'] = 'students';
 $route['(:any)'] = 'pages/view/$1';
