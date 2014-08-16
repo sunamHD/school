@@ -52,7 +52,3 @@ if ( $students->num_rows() > 0)
     }
 }
 ?>
-
-<?php // This script will display what is in the DB
-
-?>

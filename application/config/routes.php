@@ -37,10 +37,13 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['classes'] = 'classes';
+$route['classes/index'] = 'classes/index';
+$route['classes/editMenu'] = 'classes/editMenu';
+$route['classes/editDetails/(:any)'] = 'classes/editDetails/$1';
 $route['classes/delete'] = 'classes/delete';
 $route['classes/create'] = 'classes/create';
 $route['students/editMenu'] = 'students/editMenu';
-//$route['students/editDetails'] = 'students/editDetails';
 $route['students/editDetails/(:any)'] = 'students/editDetails/$1';
 $route['students/index'] = 'students/index';
 $route['students/create'] = 'students/create';

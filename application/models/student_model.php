@@ -23,19 +23,6 @@ class Student_model extends CI_Model {
         return $query;
     }
 
-    // Check if a particular student exists (DELETE THIS AND JUST GET THE STUDENT)
-    public function student_exists($stud_id)
-    {
-        $this->db->where('stud_id',$stud_id);
-        $query = $this->db->get('students');
-        if ($query->num_rows() > 0){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
     // Delete a student from the DB
     public function delete_student()
     {
@@ -57,6 +44,7 @@ class Student_model extends CI_Model {
         $this->db->where('stud_id', $stud_id);
         $this->db->update('students', $data);
     }
+
     // Insert a student into the DB
     public function set_student()
     {

@@ -7,17 +7,37 @@ class Class_model extends CI_Model {
 		$this->load->database();
 	}
 
-    // Check if a particular class exists (DELETE THIS AND JUST GET THE CLASS)
-    public function class_exists($class_id)
+
+    // Get all classes
+    public function get_classes()
     {
-        $this->db->where('class_id',$class_id);
+        // SELECT * FROM classes
+        $query= $this->db->get('classes');
+        return $query;
+    }
+
+    // Get a particular class
+    public function get_class($class_id)
+    {
+        $this->db->where('class_id', $class_id);
         $query = $this->db->get('classes');
-        if ($query->num_rows() > 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return $query;
+    }
+
+    // Edit class info in the DB
+    public function edit_class($class_id)
+    {
+
+        $maj_id = $this->input->post('maj_id');
+        if ($maj_id == ''){
+            $maj_id = NULL;
+        }        
+	    $data = array(
+		    'className' => $this->input->post('className'),
+		    'maj_id' => $maj_id,
+	    );
+        $this->db->where('class_id', $class_id);
+        $this->db->update('classes', $data);
     }
 
     // Delete a class from the DB
