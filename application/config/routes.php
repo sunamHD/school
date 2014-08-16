@@ -38,6 +38,7 @@
 |
 */
 $route['classes'] = 'classes';
+$route['classes/enroll'] = 'classes/enroll';
 $route['classes/index'] = 'classes/index';
 $route['classes/editMenu'] = 'classes/editMenu';
 $route['classes/editDetails/(:any)'] = 'classes/editDetails/$1';

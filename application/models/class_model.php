@@ -64,4 +64,15 @@ class Class_model extends CI_Model {
 
 	    return $this->db->insert('classes', $data);
     }
+
+    // Enroll a student in a class
+    public function enroll_class()
+    {
+	    $data = array(
+            'stud_id' => $this->input->post('stud_id'),
+		    'class_id' => $this->input->post('class_id'),
+	    );
+
+	    return $this->db->insert('classJoining', $data);
+    }
 }

@@ -131,6 +131,23 @@ class Classes extends MY_Controller {
 
     }
 
+    public function not_already_enrolled($stud_id, $class_id)
+    {
+        // Load the form helper library
+	    $this->load->helper('form');
+        // Load the form validation library
+	    $this->load->library('form_validation');
+
+        $enroll_check = $this->enroll_model->get_enroll($stud, $class_id);
+        if($enroll_check->num_rows() > 0) {
+            $this->form_validation->set_message('already_enrolled', 'Student already enrolled in that class');
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }        
+    }
+
     public function enroll()
     {
         // Load the form helper library
@@ -142,8 +159,9 @@ class Classes extends MY_Controller {
 
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
-	    $this->form_validation->set_rules('class_id', 'Class ID', 'required');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'required');
+	    $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_not_already_enrolled[class_id]');
 
         // If rules violated, don't create the new class
 	    if ($this->form_validation->run() === FALSE)
