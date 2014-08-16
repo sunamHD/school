@@ -33,10 +33,9 @@ class Student_model extends CI_Model {
     }
 
     // Get a particular student
-    public function get_student()
+    public function get_student($stud_id)
     {
-        $stud_id = $this->input->post('stud_id');
-        $this->db->where('stud_id',$stud_id);
+        $this->db->where('stud_id', $stud_id);
         $query = $this->db->get('students');
         return $query;
     }
@@ -62,9 +61,8 @@ class Student_model extends CI_Model {
     }
 
     // Edit student info in the DB
-    public function edit_student()
+    public function edit_student($stud_id)
     {
-        $stud_id = $this->input->post('stud_id');
 	    $data = array(
 		    'firstName' => $this->input->post('firstName'),
 		    'midName' => $this->input->post('midName'),
@@ -74,7 +72,7 @@ class Student_model extends CI_Model {
             'breakdance' => $this->input->post('breakdance'),
 	    );
         $this->db->where('stud_id', $stud_id);
-        return $this->db->update('students', $data);
+        $this->db->update('students', $data);
     }
     // Insert a student into the DB
     public function set_student()

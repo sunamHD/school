@@ -1,19 +1,5 @@
 <?php
 
-/*class MY_Form_validation extends CI_Form_validation {
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function clear_field_data() {
-
-        $this->_field_data = array();
-        return $this;
-    }
-}*/
-
 class Students extends CI_Controller {
 
 	public function __construct()
@@ -72,13 +58,13 @@ class Students extends CI_Controller {
         // Load the form validation library
 	    $this->load->library('form_validation');
         
-        $data['title'] = 'Edit Student';
+        $data['title'] = 'Choose a student to edit';
 	    $data['students'] = $this->student_model->get_students();
+
         // You must provide an ID, and it must exist in the DB
-	    //$this->form_validation->set_rules('stud_id', 'Student ID', 'required');
         $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
 
-        // If no id given/doesn't exist in DB, can't delete, so just reload
+        // If no id given/doesn't exist in DB, can't edit, so just reload
 	    if ($this->form_validation->run() === FALSE)
 	    {
 		    $this->load->view('templates/header', $data);
@@ -90,32 +76,47 @@ class Students extends CI_Controller {
         // If rules are followed, load student details view
 	    else
 	    {
-		    $this->load->view('templates/header', $data);
-            $student = $this->student_model->get_student();
-            $this->load->view('students/editDetails');
-		    $this->load->view('templates/footer');
+            // Get the student ID from the form
+            $stud_id = $this->input->post('stud_id');
 
-            // Reset the form validation rules as needed
-            $this->form_validation->clear_field_data();
-	        $this->form_validation->set_rules('firstName', 'First Name', 'required');
-	        $this->form_validation->set_rules('lastName', 'Last Name', 'required');
+            // Redirect in order to reset form validation rules
+            $this->load->helper('url');
+            $redir = 'students/editDetails/'.$stud_id;
+            redirect($redir);
+        }
+    }
 
-            // If you delete the first or last name, can't update
-	        if ($this->form_validation->run() === FALSE)
-	        {
-		        $this->load->view('templates/header', $data);
-		        $this->load->view('students/editDetails', $student);
-		        $this->load->view('templates/footer');
+    public function editDetails($stud_id)
+    {
+        // Load the form helper library
+	    $this->load->helper('form');
+        // Load the form validation library
+	    $this->load->library('form_validation');
+        
+        $data['title'] = 'Edit student details';
 
-	        }
-            // If rules are followed, edit the student
-	        else
-	        {
-                $this->student_model->edit_student();
-		        $this->load->view('students/success');
-	        }
-	    }   
+        // Get the student data from the DB
+        //$stud_id = $this->uri->segment(3); //Student ID is in URL
+        $data['student'] = $this->student_model->get_student($stud_id);
 
+        // Form validation rules
+        $this->form_validation->set_rules('firstName', 'First Name', 'required');
+        $this->form_validation->set_rules('lastName', 'Last Name', 'required');
+        // If you delete the first or last name, can't update
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('students/editDetails', $data);
+            $this->load->view('templates/footer');
+
+        }
+        // If rules are followed, edit the student
+        else
+        {
+            $this->student_model->edit_student($stud_id);
+            $this->load->view('students/success');
+        } 
+ 
     }
 
     public function delete()

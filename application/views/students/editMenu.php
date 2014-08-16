@@ -1,4 +1,4 @@
-<h2>Edit student</h2>
+<h2>Choose a student to edit</h2>
 
 <?php echo validation_errors(); ?>
 
@@ -12,3 +12,5 @@
 	<input type="submit" name="submit" value="Edit student" />
 
 </form>
+
+
