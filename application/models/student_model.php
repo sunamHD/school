@@ -7,23 +7,6 @@ class Student_model extends CI_Model {
 		$this->load->database();
 	}
 
-    // Get news
-    /*
-    public function get_students($slug = FALSE)
-    {
-        // If you don't provide a slug, just get all the students
-	    if ($slug === FALSE)
-	    {
-            // Get the news table
-		    $query = $this->db->get('news');
-		    return $query->result_array();
-	    }
-
-        // If you provide a slug, get the news with that slug
-	    $query = $this->db->get_where('news', array('slug' => $slug));
-	    return $query->row_array();
-    }*/
-
     // Get all students
     public function get_students()
     {
