@@ -1,10 +1,11 @@
 <html>
 <head>
 	<title><?php echo $title ?></title>
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/style.css'?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/table/jquery.dataTables.css'?>">
-    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>    
+    <!-- Bootstrap -->
+    <link href="<?php echo asset_url().'css/bootstrap/bootstrap.min.css'?>" rel="stylesheet" media="screen">   
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/style.css'?>">
 </head>
 <body>
-	<h1>Derek Toub's School of Sophomores</h1>
+	<h1>The Urgent School for Sophomores</h1>

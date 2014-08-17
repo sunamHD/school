@@ -8,12 +8,29 @@ html {
     margin:0;*/
 }
 body {
-font-family:Oswald, sans-serif;
-
+background-color:#0066FF;
 color: #FFFFFF;
-margin-top:0;
+/*margin-top:0;*/
 }
 
 .center {
 text-align:center
 }
+
+td {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+.table td {
+   text-align: center;   
+}
+
+.table th {
+   text-align: center;   
+}
+
+
