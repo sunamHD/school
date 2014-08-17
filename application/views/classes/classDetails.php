@@ -1,5 +1,5 @@
 <?php
-if ( $classes->num_rows() > 0)
+if ($details->num_rows() > 0)
 {
     echo '<table border="1" cellspacing="2" cellpadding="2">';
     echo "<tr>";
@@ -12,11 +12,8 @@ if ( $classes->num_rows() > 0)
     echo "<td>";
     echo 'Major Name';
     echo "</td>";
-    echo "<td>";
-    echo 'Major ID';
-    echo "</td>";
     echo "</tr>";
-    foreach ($classes->result() as $row) {
+    foreach ($details->result() as $row) {
         echo "<tr>";
         echo "<td>";
         echo "$row->class_id";
@@ -26,9 +23,6 @@ if ( $classes->num_rows() > 0)
         echo "</td>";
         echo "<td>";
         echo "$row->majorName";
-        echo "</td>";
-        echo "<td>";
-        echo "$row->maj_id";
         echo "</td>";
         echo "</tr>";
     }

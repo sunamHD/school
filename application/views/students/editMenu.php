@@ -12,5 +12,3 @@
 	<input type="submit" name="submit" value="Edit student" />
 
 </form>
-
-

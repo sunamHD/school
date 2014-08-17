@@ -1,10 +1,10 @@
 <?php
-if ( $students->num_rows() > 0)
+if ( $class->num_rows() > 0)
 {
     echo '<table border="1" cellspacing="2" cellpadding="2">';
     echo "<tr>";
     echo "<td>";
-    echo 'ID';
+    echo 'Student ID';
     echo "</td>";
     echo "<td>";
     echo 'First Name';
@@ -25,7 +25,7 @@ if ( $students->num_rows() > 0)
     echo 'Breakdance';
     echo "</td>";
     echo "</tr>";
-    foreach ($students->result() as $row) {
+    foreach ($class->result() as $row) {
         echo "<tr>";
         echo "<td>";
         echo "$row->stud_id";
