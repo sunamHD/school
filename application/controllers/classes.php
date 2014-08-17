@@ -202,8 +202,10 @@ class Classes extends MY_Controller {
 
         // Get data for this class from the DB
         $data['class'] = $this->class_model->get_class($class_id);
-        // Get the index of classes from the DB
-	    $data['classes'] = $this->class_model->get_classes();
+        // Get course details
+        $data['details'] = $this->class_model->get_class($class_id);
+        // Get index of majors
+        $data['majors'] = $this->class_model->all_majors();
         // Form validation rules
         $this->form_validation->set_rules('className', 'Class Name', 'required');
 
@@ -212,7 +214,8 @@ class Classes extends MY_Controller {
         {
             $this->load->view('templates/header', $data);
             $this->load->view('classes/editDetails', $data);
-            $this->load->view('classes/index', $data);
+            $this->load->view('classes/classDetails', $data);
+            $this->load->view('classes/majors', $data);
             $this->load->view('templates/footer');
 
         }

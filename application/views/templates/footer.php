@@ -4,7 +4,7 @@
 <script src="<?php echo asset_url().'js/table/jquery.dataTables.min.js'?>"></script>
 <script>
 $(document).ready(function(){
-    $("#interacTable").dataTable({"lengthMenu":[20, 35, 50, 100]});
+    $(".display").dataTable({"lengthMenu":[20, 35, 50, 100]});
 });
 </script>
 </body>

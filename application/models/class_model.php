@@ -50,11 +50,11 @@ class Class_model extends CI_Model {
         return $query;
     }
 
-    /*// Get all the available majors
+    // Get all the available majors
     public function all_majors()
     {
         return $this->db->get('majors');
-    }*/
+    }
 
     // Edit class info in the DB
     public function edit_class($class_id)
