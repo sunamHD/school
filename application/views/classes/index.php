@@ -34,3 +34,4 @@ if ( $classes->num_rows() > 0)
     }
 }
 ?>
+</table>

@@ -1,30 +1,33 @@
 <?php
 if ( $students->num_rows() > 0)
 {
-    echo '<table border="1" cellspacing="2" cellpadding="2">';
+    echo '<table id = "interacTable" class ="display" cellspacing="0" width="100%">';
+    echo "<thead>";
     echo "<tr>";
-    echo "<td>";
+    echo "<th>";
     echo 'ID';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'First Name';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'Middle Name';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'Last Name';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'Year';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'GPA';
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo 'Breakdance';
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($students->result() as $row) {
         echo "<tr>";
         echo "<td>";
@@ -52,3 +55,5 @@ if ( $students->num_rows() > 0)
     }
 }
 ?>
+</tbody>
+</table>
