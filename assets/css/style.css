@@ -77,11 +77,12 @@ border:0;
 }
 /* title */
 .navbar-default .navbar-brand {
-    color: #FFFFFF;
+    color: #428bca
+;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #428bca;
+    color: #7A00CC;
 }
 
 .navbar-fixed-bottom {

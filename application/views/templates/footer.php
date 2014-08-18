@@ -5,11 +5,11 @@
         <div class="container">
             <div class="navbar-collapse collapse" id="footer-body">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Classes</a></li>
-                    <li><a href="#">Majors</a></li>
-                    <li><a href="#">Enrollment</a></li>
+                    <li><a href="google.com">Home</a></li>
+                    <li><a href="<?php echo site_url('students/index') ?>">Students</a></li>
+                    <li><a href="<?php echo site_url('classes/index') ?>">Classes</a></li>
+                    <li><a href="<?php echo site_url('classes/majors') ?>">Majors</a></li>
+                    <li><a href="<?php echo site_url('classes/enroll') ?>">Enrollment</a></li>
                 </ul>
             </div>
           	<div class="navbar-header">
