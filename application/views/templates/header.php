@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">The Urgent School For Sophomores</a>
+      <a class="navbar-brand" href="<?php echo site_url('') ?>">The Urgent School For Sophomores</a>
     </div>
   </div><!-- /.container-fluid -->
 </nav>

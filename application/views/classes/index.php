@@ -1,3 +1,4 @@
+<h3> Class Index </h3>
 <?php
 if ( $classes->num_rows() > 0)
 {

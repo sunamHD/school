@@ -1,3 +1,4 @@
+<h3> Student Index </h3>
 <?php
 if ( $students->num_rows() > 0)
 {
