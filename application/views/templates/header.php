@@ -8,4 +8,20 @@
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/style.css'?>">
 </head>
 <body>
-	<h1>The Urgent School for Sophomores</h1>
+    <div id="wrapper"> <!-- This div wraps the whole page -->
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">The Urgent School For Sophomores</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+        <div id="content" class="container clear-top">

@@ -1,7 +1,8 @@
+<h3> Class Details </h3>
 <?php
 if ($details->num_rows() > 0)
 {
-    echo '<table class ="notdisplay" cellspacing="0" width="100%">';
+    echo '<table class ="oneTable" cellspacing="0" width="100%">';
     echo "<thead>";
     echo "<tr>";
     echo "<th>";

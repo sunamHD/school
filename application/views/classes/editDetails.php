@@ -1,4 +1,4 @@
-<h2>Edit class</h2>
+<h1 style="color:red">Edit class</h1>
 <?php echo validation_errors(); ?>
 <?php 
     $row = $class->result();
