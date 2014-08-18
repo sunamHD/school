@@ -1,3 +1,4 @@
+<h3> Enrolled Students </h3>
 <?php
 if ( $class->num_rows() > 0)
 {

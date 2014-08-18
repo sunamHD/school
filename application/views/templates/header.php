@@ -8,15 +8,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/style.css'?>">
 </head>
 <body>
-    <div id="wrapper"> <!-- This div wraps the whole page -->
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+          <a class="navbar-brand" href="<?php echo site_url('') ?>">The Urgent School For Sophomores</a>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div><!-- /.navbar -->
 
-      <a class="navbar-brand" href="<?php echo site_url('') ?>">The Urgent School For Sophomores</a>
-    </div>
-  </div><!-- /.container-fluid -->
-</nav>
-        <div id="content" class="container clear-top">
+    <div id="content" class="container-fluid" style="width:80%">

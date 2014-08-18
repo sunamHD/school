@@ -1,5 +1,6 @@
 html {    
-    background-color:#0066FF;
+    /*background-color:#0066FF;*/
+    background-image: linear-gradient(to bottom,#0066FF 0,#000000 100%);
     /*url('/static/images/bg.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -10,8 +11,9 @@ html {
 }
 body {
     background-image: linear-gradient(to bottom,#0066FF 0,#000000 100%);
-    background-color:#0066FF;
+    /*background-color:#0066FF;*/
     color: #FFFFFF;
+    width: 100%;
     padding-bottom: 70px;
     /*margin-top:0;*/
 }
@@ -68,20 +70,20 @@ input {
 .oneTable thead td {
   color: #D00000;
   padding: 10px 18px;
-  border-bottom: 1px solid #FFFFFF;
   /*background-color:#181818;*/
 }
 
 .oneTable tbody th,
 .oneTable tbody td {
   padding: 8px 10px;
+  border-bottom: 1px solid #FFFFFF;
   background-color:#080808;
 }
 
 /* navbar */
 .navbar-default {
 background-color: #000000;
-
+width: 100%;
 border:0;
 
 }
@@ -105,4 +107,10 @@ border:0;
 }
 .dropdown-menu>li>a {
     color:#428bca;
+}
+
+.formTable {
+
+    border-collapse: separate;
+    border-spacing: 10px;
 }

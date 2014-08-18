@@ -2,13 +2,20 @@
 
 <?php echo validation_errors(); ?>
 
-<?php 
-    $attributes = array('id' => 'editStudentMenu');
-    echo form_open('students/editMenu', $attributes) 
-?>
-	<label for="stud_id">Student ID</label>
-	<input type="input" name="stud_id" /><br />
-
-	<input type="submit" name="submit" value="Edit student" />
-
-</form>
+<div class = "container-fluid">
+    <?php 
+        $attributes = array('id' => 'editStudentMenu');
+        echo form_open('students/editMenu', $attributes) 
+    ?>
+        <table class = "formTable">
+            <tr>
+                <td>
+	                <label for="stud_id">Student ID</label>
+                </td>
+                <td>
+	                <input type="input" name="stud_id" size="25"/><br />
+                </td>
+        </table>
+        <input type="submit" name="submit" value="Edit student" />
+    </form>
+</div>

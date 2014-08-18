@@ -1,5 +1,4 @@
-</div> <!-- Close the body div -->
-</div> <!-- Close the wrapper div -->
+    </div> <!-- Close the content div -->
 <footer>
     <div class="navbar navbar-fixed-bottom">
         <div class="container-fluid">
