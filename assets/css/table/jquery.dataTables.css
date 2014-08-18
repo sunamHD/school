@@ -22,7 +22,7 @@ table.dataTable {
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;
-  color:yellow;
+  color:#D00000;
 }
 table.dataTable thead th,
 table.dataTable thead td {

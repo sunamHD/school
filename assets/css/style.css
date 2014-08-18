@@ -16,8 +16,11 @@ body {
     /*margin-top:0;*/
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color:yellow;
+h1 {
+    color:#FFFF66;
+}
+h2,h3,h4,h5,h6 {
+    color:#FFFFFF;
 }
 
 td {
@@ -63,32 +66,43 @@ input {
 
 .oneTable thead th,
 .oneTable thead td {
-  color: yellow;
+  color: #D00000;
   padding: 10px 18px;
   border-bottom: 1px solid #FFFFFF;
   /*background-color:#181818;*/
 }
 
+.oneTable tbody th,
 .oneTable tbody td {
+  padding: 8px 10px;
   background-color:#080808;
 }
 
 /* navbar */
 .navbar-default {
 background-color: #000000;
+
 border:0;
 
 }
 /* title */
 .navbar-default .navbar-brand {
-    color: #428bca
+
+    color: #FFFFFF;
 ;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #7A00CC;
+    color: #428bca;
 }
 
 .navbar-fixed-bottom {
-    background-color: black;
+    background-color: #181818;
+}
+
+.dropdown-menu {
+    background-color: #181818;
+}
+.dropdown-menu>li>a {
+    color:#428bca;
 }
