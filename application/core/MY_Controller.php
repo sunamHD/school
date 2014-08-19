@@ -45,7 +45,7 @@ class MY_Controller extends CI_Controller {
 	    $data['students'] = $this->student_model->get_students();
 
         // You must provide an ID, and it must exist in the DB
-        $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
+        $this->form_validation->set_rules('stud_id', 'Student ID', 'required|callback_stud_id_exists');
 
         // If no id given/doesn't exist in DB, can't edit, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -109,16 +109,17 @@ class MY_Controller extends CI_Controller {
 	    $this->load->library('form_validation');
         
         $data['title'] = 'Delete a student';
-
+        // Get the index of students
+	    $data['students'] = $this->student_model->get_students();
         // You must provide an ID, and it must exist in the DB
-	    //$this->form_validation->set_rules('stud_id', 'Student ID', 'required');
-        $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
+        $this->form_validation->set_rules('stud_id', 'Student ID', 'required|callback_stud_id_exists');
 
         // If no id given/doesn't exist in DB, can't delete, so just reload
 	    if ($this->form_validation->run() === FALSE)
 	    {
 		    $this->load->view('templates/header', $data);
 		    $this->load->view('students/delete');
+            $this->load->view('students/index', $data);
 		    $this->load->view('templates/footer');
 
 	    }
@@ -139,7 +140,8 @@ class MY_Controller extends CI_Controller {
 	    $this->load->library('form_validation');
 
 	    $data['title'] = 'Create a student';
-
+        // Get the index of students
+	    $data['students'] = $this->student_model->get_students();
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('firstName', 'First Name', 'required');
@@ -150,6 +152,7 @@ class MY_Controller extends CI_Controller {
 	    {
 		    $this->load->view('templates/header', $data);
 		    $this->load->view('students/create');
+            $this->load->view('students/index', $data);
 		    $this->load->view('templates/footer');
 
 	    }

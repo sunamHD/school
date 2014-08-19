@@ -114,13 +114,18 @@ border:0;
     border-spacing: 10px;
 }
 
+/*The footer navbar*/
 #THEBOTTOM {
     border-top: 1px solid #222222;
 }
+
+/*The copyright at the bottom (above the footer navbar) */
 #cpDer2014 {
+   margin-top: 50px;
    width:100%;
 }
 
+/* The body div */
 #content {
     min-height: 100%;
 }

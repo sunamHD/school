@@ -36,6 +36,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Enrollment <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="<?php echo site_url('classes/enroll') ?>">Enroll</a></li>
+                        <li><a href="<?php echo site_url('classes/unenroll') ?>">Unenroll</a></li>
                         <li><a href="<?php echo site_url('classes/enrollmentSelect') ?>">View Enrollment</a></li>
                       </ul>
                     </li>

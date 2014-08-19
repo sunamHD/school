@@ -12,7 +12,7 @@ class Classes extends MY_Controller {
 	}
 
 /* Now helper methods */
-    
+
     // Check if a class exists
     public function class_id_exists($class_id)
     {
@@ -29,7 +29,6 @@ class Classes extends MY_Controller {
             $this->form_validation->set_message('class_id_exists', 'Class does not exist');
             return FALSE;
         }
-    
     }
 
     // Check if a student already enrolled in a class
@@ -61,11 +60,12 @@ class Classes extends MY_Controller {
 
         $enroll_check = $this->class_model->get_enroll($stud_id, $class_id);
         if($enroll_check->num_rows() > 0) {
-            return TRUE;
-        }
-        else {
             $this->form_validation->set_message('not_already_enrolled', 'Student already enrolled in that class');
             return FALSE;
+        }
+        else {
+
+            return TRUE;
         }        
     }
 
@@ -108,8 +108,7 @@ class Classes extends MY_Controller {
 	    $data['classes'] = $this->class_model->get_classes();
 
         // You must provide an ID, and it must have enrolled student(s)
-        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
-        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_empty');
+        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists|callback_class_empty');
         // If class id doesn't exist, or has no enrolled students, reload
 	    if ($this->form_validation->run() === FALSE)
 	    {
@@ -268,6 +267,8 @@ class Classes extends MY_Controller {
 	    $data['title'] = 'Create a class';
         // Get class data to generate a class index table
 	    $data['classes'] = $this->class_model->get_classes();
+        // Get index of majors
+        $data['majors'] = $this->class_model->all_majors();
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('className', 'Class Name', 'required');
@@ -278,6 +279,7 @@ class Classes extends MY_Controller {
 		    $this->load->view('templates/header', $data);
 		    $this->load->view('classes/create');
             $this->load->view('classes/index', $data);
+            $this->load->view('classes/majors', $data);
 		    $this->load->view('templates/footer');
 
 	    }
@@ -304,16 +306,15 @@ class Classes extends MY_Controller {
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_already_enrolled[class_id]');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists|callback_already_enrolled[class_id]');
 
         // If rules violated, don't unenroll from the class
 	    if ($this->form_validation->run() === FALSE)
 	    {
 		    $this->load->view('templates/header', $data);
 		    $this->load->view('classes/unenroll');
-            $this->load->view('classes/index', $data);
             $this->load->view('students/index', $data);
+            $this->load->view('classes/index', $data);
 		    $this->load->view('templates/footer');
 
 	    }
@@ -340,16 +341,15 @@ class Classes extends MY_Controller {
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_not_already_enrolled[class_id]');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists|callback_not_already_enrolled[class_id]');
 
         // If rules violated, don't enroll in the class
 	    if ($this->form_validation->run() === FALSE)
 	    {
 		    $this->load->view('templates/header', $data);
 		    $this->load->view('classes/enroll');
-            $this->load->view('classes/index', $data);
             $this->load->view('students/index', $data);
+            $this->load->view('classes/index', $data);
 		    $this->load->view('templates/footer');
 
 	    }
