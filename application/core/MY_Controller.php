@@ -52,7 +52,7 @@ class MY_Controller extends CI_Controller {
 	    $data['students'] = $this->student_model->get_students();
 
         // You must provide an integer ID, and it must exist in the DB
-        $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists');
+        $this->form_validation->set_rules('stud_id', 'Student ID', 'required|is_natural|callback_stud_id_exists');
 
         // If no id given/doesn't exist in DB, can't edit, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -122,7 +122,7 @@ class MY_Controller extends CI_Controller {
         // Get the index of students
 	    $data['students'] = $this->student_model->get_students();
         // You must provide an integer ID, and it must exist in the DB
-        $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists');
+        $this->form_validation->set_rules('stud_id', 'Student ID', 'required|is_natural|callback_stud_id_exists');
 
         // If no id given/doesn't exist in DB, can't delete, so just reload
 	    if ($this->form_validation->run() === FALSE)
