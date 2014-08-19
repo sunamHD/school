@@ -33,13 +33,31 @@ class Student_model extends CI_Model {
     // Edit student info in the DB
     public function edit_student($stud_id)
     {
+        // Several values must be set to NULL if not entered in the form
+        $gpa = $this->input->post('gpa');
+        if ($gpa == ''){
+            $gpa = NULL;
+        }
+        $year = $this->input->post('year');
+        if ($year == ''){
+            $year = NULL;
+        }
+        $breakdance = $this->input->post('breakdance');
+        if ($breakdance == ''){
+            $breakdance = NULL;
+        }
+        $midName = $this->input->post('midName');
+        if ($midName == ''){
+            $midName = NULL;
+        }
+
 	    $data = array(
 		    'firstName' => $this->input->post('firstName'),
-		    'midName' => $this->input->post('midName'),
+		    'midName' => $midName,
 		    'lastName' => $this->input->post('lastName'),
-            'year' => $this->input->post('year'),
-            'gpa' => $this->input->post('gpa'),
-            'breakdance' => $this->input->post('breakdance'),
+            'year' => $year,
+            'gpa' => $gpa,
+            'breakdance' => $breakdance,
 	    );
         $this->db->where('stud_id', $stud_id);
         $this->db->update('students', $data);
@@ -48,18 +66,31 @@ class Student_model extends CI_Model {
     // Insert a student into the DB
     public function set_student()
     {
-        // Load a library to help generate uniform resource identifiers
-	    //$this->load->helper('url');
-        //
-	    //$slug = url_title($this->input->post('title'), 'dash', TRUE);
+        // Several values must be set to NULL if not entered in the form
+        $gpa = $this->input->post('gpa');
+        if ($gpa == ''){
+            $gpa = NULL;
+        }
+        $year = $this->input->post('year');
+        if ($year == ''){
+            $year = NULL;
+        }
+        $breakdance = $this->input->post('breakdance');
+        if ($breakdance == ''){
+            $breakdance = NULL;
+        }
+        $midName = $this->input->post('midName');
+        if ($midName == ''){
+            $midName = NULL;
+        }
 
 	    $data = array(
 		    'firstName' => $this->input->post('firstName'),
-		    'midName' => $this->input->post('midName'),
+		    'midName' => $midName,
 		    'lastName' => $this->input->post('lastName'),
-            'year' => $this->input->post('year'),
-            'gpa' => $this->input->post('gpa'),
-            'breakdance' => $this->input->post('breakdance'),
+            'year' => $year,
+            'gpa' => $gpa,
+            'breakdance' => $breakdance,
 	    );
 
 	    return $this->db->insert('students', $data);

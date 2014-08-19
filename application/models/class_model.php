@@ -54,6 +54,13 @@ class Class_model extends CI_Model {
         return $this->db->get('majors');
     }
 
+    // Get a particular major
+    public function get_maj($maj_id)
+    {
+        $this->db->where('maj_id', $maj_id);
+        return $this->db->get('majors');
+    }
+
     // Edit class info in the DB
     public function edit_class($class_id)
     {

@@ -31,6 +31,24 @@ class Classes extends MY_Controller {
         }
     }
 
+    // Check if a major exists
+    public function major_exists($maj_id)
+    {
+        // Load the form helper library
+	    $this->load->helper('form');
+        // Load the form validation library
+	    $this->load->library('form_validation');
+
+        $class_check = $this->class_model->get_maj($maj_id);
+        if($class_check->num_rows() > 0) {
+            return TRUE;
+        }
+        else {
+            $this->form_validation->set_message('major_exists', 'Major does not exist');
+            return FALSE;
+        }
+    }
+
     // Check if a student already enrolled in a class
     public function already_enrolled($stud_id, $class_id)
     {
@@ -118,7 +136,7 @@ class Classes extends MY_Controller {
 
         // You must provide an ID, it must be an integer,
         // it must have enrolled students in the class
-        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists|callback_class_empty');
+        $this->form_validation->set_rules('class_id', 'Class ID', 'required|is_natural|callback_class_id_exists|callback_class_empty');
         // If class id doesn't exist, or has no enrolled students, reload
 	    if ($this->form_validation->run() === FALSE)
 	    {
@@ -177,7 +195,7 @@ class Classes extends MY_Controller {
 
         // You must provide an ID, it must be an integer,
         // and it must exist in the DB
-        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
+        $this->form_validation->set_rules('class_id', 'Class ID', 'required|is_natural|callback_class_id_exists');
 
         // If no id given/doesn't exist in DB, can't edit, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -216,10 +234,12 @@ class Classes extends MY_Controller {
         $data['details'] = $this->class_model->get_class($class_id);
         // Get index of majors
         $data['majors'] = $this->class_model->all_majors();
-        // Form validation rules
-        $this->form_validation->set_rules('className', 'Class Name', 'required');
 
-        // If you delete the class name, can't update
+        // Class name is required
+        $this->form_validation->set_rules('className', 'Class Name', 'required');
+        // major id must be integer and must exist in DB
+        $this->form_validation->set_rules('maj_id', 'Major ID', 'required|is_natural|callback_major_exists');
+        // If you delete the class name or give invalid major id, can't update
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
@@ -251,7 +271,7 @@ class Classes extends MY_Controller {
         // Get class data to generate a class index table
 	    $data['classes'] = $this->class_model->get_classes();
         // You must provide an integer ID, and it must exist in the DB
-        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
+        $this->form_validation->set_rules('class_id', 'Class ID', 'required|is_natural|callback_class_id_exists');
 
         // If no id given/doesn't exist in DB, can't delete, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -286,7 +306,8 @@ class Classes extends MY_Controller {
         $data['majors'] = $this->class_model->all_majors();
         // Class name is required
 	    $this->form_validation->set_rules('className', 'Class Name', 'required');
-
+        // major id must be integer and must exist in DB
+        $this->form_validation->set_rules('maj_id', 'Major ID', 'required|is_natural|callback_major_exists');
         // If rules violated, don't create the new class
 	    if ($this->form_validation->run() === FALSE)
 	    {
@@ -321,27 +342,41 @@ class Classes extends MY_Controller {
 	    $data['students'] = $this->student_model->get_students();
         // class id and student id are required (integer values), must exist
         // and student must already be enrolled in order to unenroll
-	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_already_enrolled['.$this->input->post('class_id').']');
+	    $this->form_validation->set_rules('class_id', 'Class ID', 'required|is_natural|callback_class_id_exists');
+        // If the class is input successfully
+        if ($this->form_validation->run() === TRUE)
+        {
+            // Now add the student ID requirements
+	        $this->form_validation->set_rules('stud_id', 'Student ID', 'required|is_natural|callback_stud_id_exists|callback_already_enrolled['.$this->input->post('class_id').']');
 
-        // If rules violated, don't unenroll from the class
-	    if ($this->form_validation->run() === FALSE)
-	    {
-		    $this->load->view('templates/header', $data);
-		    $this->load->view('classes/unenroll');
+            // If rules violated, don't unenroll from the class
+	        if ($this->form_validation->run() === FALSE)
+	        {
+		        $this->load->view('templates/header', $data);
+		        $this->load->view('classes/unenroll');
+                $this->load->view('students/index', $data);
+                $this->load->view('classes/index', $data);
+		        $this->load->view('templates/footer');
+
+	        }
+            // If rules are followed, unenroll from the class
+	        else
+	        {
+		        $this->class_model->unenroll_class();
+                $this->load->view('templates/header', $data);
+                $this->load->view('classes/success');
+                $this->load->view('templates/footer');
+	        }
+        }
+        // If class not input successfully, reload
+        else
+        {
+	        $this->load->view('templates/header', $data);
+	        $this->load->view('classes/unenroll');
             $this->load->view('students/index', $data);
             $this->load->view('classes/index', $data);
-		    $this->load->view('templates/footer');
-
-	    }
-        // If rules are followed, unenroll from the class
-	    else
-	    {
-		    $this->class_model->unenroll_class();
-            $this->load->view('templates/header', $data);
-            $this->load->view('classes/success');
-            $this->load->view('templates/footer');
-	    }
+	        $this->load->view('templates/footer');
+        }
     }
     public function enroll()
     {
@@ -358,26 +393,39 @@ class Classes extends MY_Controller {
 
         // Class and Student ID are required (integer values), student mustn't
         // already be enrolled, and class/student IDs must exist
-	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_not_enrolled['.$this->input->post('class_id').']');
+	    $this->form_validation->set_rules('class_id', 'Class ID', 'required|is_natural|callback_class_id_exists');
 
-        // If rules violated, don't enroll in the class
-	    if ($this->form_validation->run() === FALSE)
-	    {
-		    $this->load->view('templates/header', $data);
-		    $this->load->view('classes/enroll');
+        // If the class is input successfully
+        if ($this->form_validation->run() === TRUE){
+         // Now add the requirements for the student ID and the student not
+         // already being enrolled
+	     $this->form_validation->set_rules('stud_id', 'Student ID', 'required|is_natural|callback_stud_id_exists|callback_not_enrolled['.$this->input->post('class_id').']');
+            // If rules violated, don't enroll in the class
+	        if ($this->form_validation->run() === FALSE)
+	        {
+		        $this->load->view('templates/header', $data);
+		        $this->load->view('classes/enroll');
+                $this->load->view('students/index', $data);
+                $this->load->view('classes/index', $data);
+		        $this->load->view('templates/footer');
+
+	        }
+            // If rules are followed, enroll in the class
+	        else
+	        {
+		        $this->class_model->enroll_class();
+                $this->load->view('templates/header', $data);
+                $this->load->view('classes/success');
+                $this->load->view('templates/footer');
+	        }
+        }
+        // If the class is not input successfully, reload
+        else{
+	        $this->load->view('templates/header', $data);
+	        $this->load->view('classes/enroll');
             $this->load->view('students/index', $data);
             $this->load->view('classes/index', $data);
-		    $this->load->view('templates/footer');
-
-	    }
-        // If rules are followed, enroll in the class
-	    else
-	    {
-		    $this->class_model->enroll_class();
-            $this->load->view('templates/header', $data);
-            $this->load->view('classes/success');
-            $this->load->view('templates/footer');
-	    }
+	        $this->load->view('templates/footer');
+        }
     }
 }
