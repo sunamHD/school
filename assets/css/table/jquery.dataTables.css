@@ -342,6 +342,7 @@ table.dataTable td {
   cursor: pointer;
   *cursor: hand;
   color: #333333 !important;
+  background-color:white;
   border: 1px solid transparent;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {

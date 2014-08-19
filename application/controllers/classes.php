@@ -97,6 +97,15 @@ class Classes extends MY_Controller {
 	    $this->load->view('templates/footer');
     }
 
+    public function majors()
+    {
+	    $data['majors'] = $this->class_model->all_majors();
+	    $data['title'] = 'Major List';
+	    $this->load->view('templates/header', $data);
+	    $this->load->view('classes/majors', $data);
+	    $this->load->view('templates/footer');
+    }
+
     public function enrollmentSelect()
     {
         // Load the form helper library
@@ -107,8 +116,9 @@ class Classes extends MY_Controller {
         $data['title'] = 'Choose a class to view enrollment';
 	    $data['classes'] = $this->class_model->get_classes();
 
-        // You must provide an ID, and it must have enrolled student(s)
-        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists|callback_class_empty');
+        // You must provide an ID, it must be an integer,
+        // it must have enrolled students in the class
+        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists|callback_class_empty');
         // If class id doesn't exist, or has no enrolled students, reload
 	    if ($this->form_validation->run() === FALSE)
 	    {
@@ -165,8 +175,9 @@ class Classes extends MY_Controller {
         $data['title'] = 'Choose a class to edit';
 	    $data['classes'] = $this->class_model->get_classes();
 
-        // You must provide an ID, and it must exist in the DB
-        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
+        // You must provide an ID, it must be an integer,
+        // and it must exist in the DB
+        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
 
         // If no id given/doesn't exist in DB, can't edit, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -222,7 +233,9 @@ class Classes extends MY_Controller {
         else
         {
             $this->class_model->edit_class($class_id);
+            $this->load->view('templates/header', $data);
             $this->load->view('classes/success');
+            $this->load->view('templates/footer');
         } 
  
     }
@@ -237,8 +250,8 @@ class Classes extends MY_Controller {
         $data['title'] = 'Delete a class';
         // Get class data to generate a class index table
 	    $data['classes'] = $this->class_model->get_classes();
-        // You must provide an ID, and it must exist in the DB
-        $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
+        // You must provide an integer ID, and it must exist in the DB
+        $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
 
         // If no id given/doesn't exist in DB, can't delete, so just reload
 	    if ($this->form_validation->run() === FALSE)
@@ -253,7 +266,9 @@ class Classes extends MY_Controller {
 	    else
 	    {
 		    $this->class_model->delete_class();
-		    $this->load->view('classes/success');
+            $this->load->view('templates/header', $data);
+            $this->load->view('classes/success');
+            $this->load->view('templates/footer');
 	    }     
     }
 
@@ -269,8 +284,7 @@ class Classes extends MY_Controller {
 	    $data['classes'] = $this->class_model->get_classes();
         // Get index of majors
         $data['majors'] = $this->class_model->all_majors();
-        // Set form validation rules (first argument is name of variable, second
-        // argument is name to be shown in error message
+        // Class name is required
 	    $this->form_validation->set_rules('className', 'Class Name', 'required');
 
         // If rules violated, don't create the new class
@@ -287,7 +301,9 @@ class Classes extends MY_Controller {
 	    else
 	    {
 		    $this->class_model->set_class();
-		    $this->load->view('classes/success');
+            $this->load->view('templates/header', $data);
+            $this->load->view('classes/success');
+            $this->load->view('templates/footer');
 	    }
     }
 
@@ -303,8 +319,8 @@ class Classes extends MY_Controller {
 	    $data['classes'] = $this->class_model->get_classes();
         // Get student data to generate a student index table
 	    $data['students'] = $this->student_model->get_students();
-        // Set form validation rules (first argument is name of variable, second
-        // argument is name to be shown in error message
+        // class id and student id are required (integer values), must exist
+        // and student must already be enrolled in order to unenroll
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
 	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_already_enrolled['.$this->input->post('class_id').']');
 
@@ -322,7 +338,9 @@ class Classes extends MY_Controller {
 	    else
 	    {
 		    $this->class_model->unenroll_class();
-		    $this->load->view('classes/success');
+            $this->load->view('templates/header', $data);
+            $this->load->view('classes/success');
+            $this->load->view('templates/footer');
 	    }
     }
     public function enroll()
@@ -338,8 +356,8 @@ class Classes extends MY_Controller {
         // Get student data to generate a student index table
 	    $data['students'] = $this->student_model->get_students();
 
-        // Set form validation rules (first argument is name of variable, second
-        // argument is name to be shown in error message
+        // Class and Student ID are required (integer values), student mustn't
+        // already be enrolled, and class/student IDs must exist
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
 	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_not_enrolled['.$this->input->post('class_id').']');
 
@@ -357,7 +375,9 @@ class Classes extends MY_Controller {
 	    else
 	    {
 		    $this->class_model->enroll_class();
-		    $this->load->view('classes/success');
+            $this->load->view('templates/header', $data);
+            $this->load->view('classes/success');
+            $this->load->view('templates/footer');
 	    }
     }
 }

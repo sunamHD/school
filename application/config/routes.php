@@ -38,6 +38,7 @@
 |
 */
 $route['classes'] = 'classes';
+$route['classes/majors'] = 'classes/majors';
 $route['classes/enrollmentSelect'] = 'classes/enrollmentSelect';
 $route['classes/enrollmentDetails/(:any)'] = 'classes/enrollmentDetails/$1';
 $route['classes/unenroll'] = 'classes/unenroll';
