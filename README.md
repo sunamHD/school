@@ -6,7 +6,7 @@ USAGE:
 
 ***Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.***
 
-0: Unpack, and rename "school-master" to "school"
+0: Unpack the zip into /var/www, and rename "school-master" to "school"
 
 1: Create a mySQL database and user, give the user all privileges on the database
 
@@ -33,8 +33,6 @@ $db['default']['dbdriver'] = 'mysql';
 ```
 $ mysql -u root -p[yourpasswordHere] [yourDBhere] < school/dump.sql
 ```
-
-4: Move the school directory to /var/www
 
 5: Navigate to localhost/school in your web browser
 
