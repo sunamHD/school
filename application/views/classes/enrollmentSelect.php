@@ -2,13 +2,21 @@
 
 <?php echo validation_errors(); ?>
 
-<?php 
-    $attributes = array('id' => 'enrollmentSelectMenu');
-    echo form_open('classes/enrollmentSelect', $attributes) 
-?>
-	<label for="class_id">Class ID</label>
-	<input type="input" name="class_id" /><br />
-
-	<input type="submit" name="submit" value="View Enrollment" />
-
-</form>
+<div class = "container-fluid">
+    <?php 
+        $attributes = array('id' => 'enrollmentSelectMenu');
+        echo form_open('classes/enrollmentSelect', $attributes) 
+    ?>
+        <table class = "formTable">
+            <tr>
+                <td>
+	               <label for="class_id">Class ID</label>
+                </td>
+                <td>
+	                <input type="input" name="class_id" /><br />
+                </td>
+            </tr>
+        </table>
+	    <input type="submit" name="submit" value="View Enrollment" />
+    </form>
+</div>

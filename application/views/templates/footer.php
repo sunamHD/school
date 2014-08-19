@@ -1,4 +1,7 @@
     </div> <!-- Close the content div -->
+<div id="cpDer2014">
+    &copy; Derek Toub 2014
+</div>
 <footer>
     <div class="navbar navbar-fixed-bottom">
         <div class="container-fluid">
@@ -38,7 +41,7 @@
                     </li>
                 </ul>
             </div>
-          	<div class="navbar-header">
+          	<div id = "THEBOTTOM" class="navbar-header">
                 <button type="button" class="navbar-toggle" style="border-color:#FFFFFF; color: $FFFFFF; background-image: linear-gradient(to bottom,#0066FF 0,#000000 100%);" data-toggle="collapse" data-target="#footer-body">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

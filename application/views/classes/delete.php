@@ -2,11 +2,18 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('classes/delete') ?>
-
-	<label for="class_id">Class ID</label>
-	<input type="input" name="class_id" /><br />
-
-	<input type="submit" name="submit" value="Delete class" />
-
-</form>
+<div class = "container-fluid">
+    <?php echo form_open('classes/delete') ?>
+        <table class = "formTable">
+            <tr>
+                <td>
+	                <label for="class_id">Class ID</label>
+                </td>
+                <td>
+	                <input type="input" name="class_id" /><br />
+                </td>
+            </tr>
+        </table>
+	    <input type="submit" name="submit" value="Delete class" />
+    </form>
+</div>
