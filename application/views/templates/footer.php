@@ -57,13 +57,29 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="<?php echo asset_url().'js/table/jquery.dataTables.min.js'?>"></script>
 
-<!-- jQuery for Bootstrap -->
+<!-- js for Bootstrap -->
 <script src="<?php echo asset_url().'js/bootstrap/bootstrap.min.js'?>"></script> 
 
 <script>
 $(document).ready(function(){
-    $(".display").dataTable({"lengthMenu":[20, 35, 50, 100]});
+    /* This function makes it so that the class index starts with 10 entries,
+       while any other data table starts with 20 entries */
+    $('.display').each(function(i, obj) {
+        if (obj.id == 'display10')
+        {
+            $('#display10').dataTable({"lengthMenu":[10, 20, 50, 100]}); 
+        }
+        else
+        {
+            $(this).dataTable({"lengthMenu":[20, 35, 50, 100]});
+        }
+    });
 });
+
+/* This function fills empty cells so that they still have a border in firefox*/
+$(document).ready(function() {
+      $("td:empty").html("&nbsp;");
+    });
 </script>
 </body>
 </html>
