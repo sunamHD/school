@@ -306,7 +306,7 @@ class Classes extends MY_Controller {
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_already_enrolled[class_id]');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_already_enrolled['.$this->input->post('class_id').']');
 
         // If rules violated, don't unenroll from the class
 	    if ($this->form_validation->run() === FALSE)
@@ -341,7 +341,7 @@ class Classes extends MY_Controller {
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
 	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_not_enrolled[class_id]');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_not_enrolled['.$this->input->post('class_id').']');
 
         // If rules violated, don't enroll in the class
 	    if ($this->form_validation->run() === FALSE)
