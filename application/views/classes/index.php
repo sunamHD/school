@@ -2,7 +2,7 @@
 <?php
 if ( $classes->num_rows() > 0)
 {
-    echo '<table class ="display" cellspacing="0" width="100%">';
+    echo '<table id="display10" class ="display" cellspacing="0" width="100%">';
     echo "<thead>";
     echo "<tr>";
     echo "<th>";
