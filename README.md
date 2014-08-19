@@ -4,7 +4,7 @@ Project: Virtual Class
 USAGE:
 ------
 
-Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.
+***Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.***
 
 0: Unpack, and rename "school-master" to "school"
 
