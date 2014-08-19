@@ -10,9 +10,17 @@ Note: These instructions assume you are using the LAMP stack and already have my
 2. Edit school/application/config/database.php so that the following lines correspond to your db and user.
 """
 $db['default']['hostname'] = 'localhost';
+"""
+"""
 $db['default']['username'] = 'yourUser';
+"""
+"""
 $db['default']['password'] = 'yourPassword';
+"""
+"""
 $db['default']['database'] = 'yourDB';
+"""
+"""
 $db['default']['dbdriver'] = 'mysql';
 """
 3. Load the database dump into your database
