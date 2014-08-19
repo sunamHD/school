@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title><?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">    
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url().'css/table/jquery.dataTables.css'?>">
     <!-- Bootstrap -->
     <link href="<?php echo asset_url().'css/bootstrap/bootstrap.min.css'?>" rel="stylesheet" media="screen">   
