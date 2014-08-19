@@ -2,6 +2,7 @@ Project: Virtual Class
 ======================
 
 USAGE:
+------
 
 Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.
 
