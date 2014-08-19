@@ -41,17 +41,17 @@ class Classes extends MY_Controller {
 
         $enroll_check = $this->class_model->get_enroll($stud_id, $class_id);
         if($enroll_check->num_rows() > 0) {
-            $this->form_validation->set_message('already_enrolled', 'Student not enrolled in that class');
-            return FALSE;
+            return TRUE;
         }
         else {
-            return TRUE;
+            $this->form_validation->set_message('already_enrolled', 'Student not enrolled in that class');
+            return FALSE;
         }        
     }
 
     // Making the inverse of already_enrolled because it doesn't seem
     // like you can negate a form validation callback function :(
-    public function not_already_enrolled($stud_id, $class_id)
+    public function not_enrolled($stud_id, $class_id)
     {
         // Load the form helper library
 	    $this->load->helper('form');
@@ -60,7 +60,7 @@ class Classes extends MY_Controller {
 
         $enroll_check = $this->class_model->get_enroll($stud_id, $class_id);
         if($enroll_check->num_rows() > 0) {
-            $this->form_validation->set_message('not_already_enrolled', 'Student already enrolled in that class');
+            $this->form_validation->set_message('not_enrolled', 'Student already enrolled in that class');
             return FALSE;
         }
         else {
@@ -305,8 +305,8 @@ class Classes extends MY_Controller {
 	    $data['students'] = $this->student_model->get_students();
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
-	    $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists|callback_already_enrolled[class_id]');
+	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_already_enrolled[class_id]');
 
         // If rules violated, don't unenroll from the class
 	    if ($this->form_validation->run() === FALSE)
@@ -340,8 +340,8 @@ class Classes extends MY_Controller {
 
         // Set form validation rules (first argument is name of variable, second
         // argument is name to be shown in error message
-	    $this->form_validation->set_rules('class_id', 'Class ID', 'callback_class_id_exists');
-	    $this->form_validation->set_rules('stud_id', 'Student ID', 'callback_stud_id_exists|callback_not_already_enrolled[class_id]');
+	    $this->form_validation->set_rules('class_id', 'Class ID', 'is_natural|callback_class_id_exists');
+	    $this->form_validation->set_rules('stud_id', 'Student ID', 'is_natural|callback_stud_id_exists|callback_not_enrolled[class_id]');
 
         // If rules violated, don't enroll in the class
 	    if ($this->form_validation->run() === FALSE)

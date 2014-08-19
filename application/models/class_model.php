@@ -36,10 +36,8 @@ class Class_model extends CI_Model {
     // Check if a class contains a student
     public function get_enroll($stud_id, $class_id)
     {
-        $this->db->where('stud_id', $stud_id);
-        $this->db->where('class_id', $class_id);
-        $query = $this->db->get('classJoining');
-        return $query;
+        $query = "SELECT * FROM classJoining WHERE stud_id = $stud_id AND class_id = $class_id";
+        return $this->db->query($query);
     }
 
     // Get all the enrolled students in a class
