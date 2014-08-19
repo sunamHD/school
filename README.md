@@ -5,9 +5,9 @@ USAGE:
 
 Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.
 
-0. Unpack, and rename "school-master" to "school"
-1. Create a mySQL database and user, give the user all privileges on the database
-2. Edit school/application/config/database.php so that the following lines correspond to your db and user.
+0: Unpack, and rename "school-master" to "school"
+1: Create a mySQL database and user, give the user all privileges on the database
+2: Edit school/application/config/database.php so that the following lines correspond to your db and user.
 ```
 $db['default']['hostname'] = 'localhost';
 ```
@@ -23,12 +23,12 @@ $db['default']['database'] = 'yourDB';
 ```
 $db['default']['dbdriver'] = 'mysql';
 ```
-3. Load the database dump into your database
+3: Load the database dump into your database
 ```
 $ mysql -u root -p[yourpasswordHere] [yourDBhere] < school/dump.sql
 ```
-4. Move the school directory to /var/www
-5. Navigate to localhost/school in your web browser
+4: Move the school directory to /var/www
+5: Navigate to localhost/school in your web browser
 
 Description:
 ------------
