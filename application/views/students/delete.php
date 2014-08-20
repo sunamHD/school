@@ -2,7 +2,6 @@
 
 <?php echo validation_errors(); ?>
 
-<h3>Name (as per current input):<span id="nameDisp"></span></h3>
 <div class = "container-fluid">
     <?php 
         $attributes = array('id' => 'deleteStudentForm');
