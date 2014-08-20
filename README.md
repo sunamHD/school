@@ -36,6 +36,8 @@ $ mysql -u root -p[yourpasswordHere] [yourDBhere] < school/dump.sql
 
 4: Navigate to localhost/school in your web browser
 
+If you're wondering where the code for MY_Controller is, it is in school/application/core.
+
 Description:
 ------------
 
