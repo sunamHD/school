@@ -6,7 +6,7 @@ USAGE:
 
 ***Note: These instructions assume you are using the LAMP stack and already have mySQL, php, and Apache installed.***
 
-0: Unpack the zip into /var/www, and rename "school-master" to "school"
+0: Download/unpack the zip into /var/www, and rename "school-master" to "school"
 
 1: Create a mySQL database and user, give the user all privileges on the database
 
