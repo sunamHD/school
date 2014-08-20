@@ -34,7 +34,7 @@ $db['default']['dbdriver'] = 'mysql';
 $ mysql -u root -p[yourpasswordHere] [yourDBhere] < school/dump.sql
 ```
 
-5: Navigate to localhost/school in your web browser
+4: Navigate to localhost/school in your web browser
 
 Description:
 ------------
