@@ -2,7 +2,7 @@
 
 class Classes extends MY_Controller {
 
-/* First is the constructor */
+/* First is the constructor */ 
 
     // Inherit all student and CI_Controller methods from MY_Controller
 	public function __construct()
