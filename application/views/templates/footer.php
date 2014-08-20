@@ -1,7 +1,4 @@
     </div> <!-- Close the content div -->
-<div id="cpDer2014">
-    &copy; Derek Toub 2014
-</div>
 <footer>
     <div class="navbar navbar-fixed-bottom">
         <div class="container-fluid">
@@ -40,6 +37,7 @@
                         <li><a href="<?php echo site_url('classes/enrollmentSelect') ?>">View Enrollment</a></li>
                       </ul>
                     </li>
+                    <li><a href="http://github.com/derektoub">&copy; Derek Toub 2014</a></li>
                 </ul>
             </div>
           	<div id = "THEBOTTOM" class="navbar-header">
