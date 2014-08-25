@@ -64,3 +64,5 @@ Description:
 3. [CodeIgniter](https://ellislab.com/codeigniter/user-guide/)
 4. HTML, CSS, jQuery
 5. [Bootstrap](http://getbootstrap.com/)
+
+** Tables were generated using [dataTables](http://www.datatables.net/) **
