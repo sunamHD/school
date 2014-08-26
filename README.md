@@ -66,3 +66,5 @@ Description:
 5. [Bootstrap](http://getbootstrap.com/)
 
 ** Tables were generated using [dataTables](http://www.datatables.net/) **
+
+An example of what the site looks like can be found at [imgur](http://i.imgur.com/COGe15s.png). The page shows the enrolled students for a class that was selected.
